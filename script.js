@@ -29,5 +29,17 @@ const affiche = (tableau) => {
     const celluleNom = document.createElement("td");
     const celluleOk = document.createElement("td");
     const celluleSupr = document.createElement("td");
+
+    celluleNom.textContent = nom;
+
+    const boutonOk = document.createElement("button");
+    if (element.completed) {
+      boutonOk.textContent = "terminé";
+    } else {
+      boutonOk.textContent = "pas fait";
+    }
+
+    const boutonSup = document.createElement("button");
+    boutonSup.textContent = "supprimé";
   });
 };
