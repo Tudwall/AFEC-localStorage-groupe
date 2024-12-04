@@ -1,0 +1,24 @@
+Gestion des tâches avec fetch, cookies, et localStorage
+Objectif :
+
+Créer une page web permettant de gérer des tâches. Les utilisateurs pourront ajouter, supprimer et marquer des tâches comme complètes. Le projet intègre des appels API pour récupérer les tâches depuis un serveur simulé, ainsi que l'utilisation de cookies pour garder une trace de la dernière interaction et localStorage pour stocker les tâches.
+
+Étape 1 : Préparer l'interface utilisateur (HTML + CSS)
+
+   1-  Créez un fichier index.html avec un formulaire permettant à l'utilisateur d'ajouter une tâche. Le formulaire doit inclure un champ pour le nom de la tâche et un bouton pour l'ajouter à la liste.
+    
+    2- Affichez les tâches sous forme de liste, avec un bouton pour marquer chaque tâche comme "complète" et un autre pour la supprimer.
+    Utilisez un fichier CSS pour donner un style à l'interface.
+
+   
+    Étape 2 : Simuler une API avec fetch pour récupérer les tâches (JavaScript)
+
+    Créez une fonction pour simuler un appel API avec fetch. Cette fonction simulera la récupération des tâches depuis un serveur et renverra une liste d'objets tâche. (Retour setTimeOut qui cette fois-ci est resolve en renvoyant un tableau d'objets de taches de type  { id: 1, name: 'Buy groceries', completed: false },)
+
+
+    // Étape 3 : Gérer les interactions avec cookies et localStorage
+
+    Implémentez l'utilisation des cookies pour garder une trace de la dernière interaction de l'utilisateur.
+
+
+    Stockez et récupérez les tâches ajoutées en utilisant localStorage ainsi que le faux fetch ... 
