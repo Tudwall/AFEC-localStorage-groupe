@@ -7,7 +7,7 @@ let tasks = [
   {
     id: 2,
     name: "vaiselle",
-    completed: false,
+    completed: true,
   },
 ];
 
@@ -38,8 +38,17 @@ const affiche = (tableau) => {
     } else {
       boutonOk.textContent = "pas fait";
     }
+    celluleOk.appendChild(boutonOk);
 
     const boutonSup = document.createElement("button");
     boutonSup.textContent = "supprimé";
+    celluleSupr.appendChild(boutonSup);
+
+    ligne.appendChild(celluleNom, celluleOk, celluleSupr);
+    ligne.appendChild(celluleOk);
+    ligne.appendChild(celluleSupr);
+
+    document.getElementById("tasktable").appendChild(ligne);
   });
 };
+affiche(tasks);
