@@ -52,3 +52,27 @@ const affiche = (tableau) => {
   });
 };
 affiche(tasks);
+
+
+const supprimTask= (ligne)=>{
+
+
+	
+            if (confirm("Etes-vous sûr de vouloir supprimer cette tâche ?")){
+
+// function delete_row(e) {
+//     e.parentElement.remove();
+}
+			}
+
+			const supprimeligne=document.removeChild()
+
+
+
+  }
+	
+
+})
+
+
+
