@@ -1,4 +1,5 @@
 let tasks = [];
+let id = 0;
 
 const recupDonnees = () => {
 	return new Promise((resolve) => {
@@ -44,9 +45,6 @@ const affiche = (tableau) => {
 	});
 };
 
-let id = 0;
-let tasks = [];
-
 const addTask = (arr) => {
 	const taskInput = document.querySelector("input");
 	const task = {
@@ -70,23 +68,3 @@ for (let i = 0; i < tasks.length; i++) {
 		document.getElementById("tasktable").insertRow(`${i + 1}`);
 	});
 }
-
-let id = 0;
-let tasks = [];
-
-const addTask = (arr) => {
-	const taskInput = document.querySelector("input");
-	const task = {
-		id: `${id++}`,
-		name: `${taskInput.value}`,
-		completed: false,
-	};
-	arr.push(task);
-	localStorage.setItem("task-array", JSON.stringify(arr));
-};
-
-const form = document.querySelector("form");
-form.addEventListener("submit", (e) => {
-	e.preventDefault();
-	addTask(tasks);
-});
