@@ -1,24 +1,16 @@
+let id = 0;
 let tasks = [];
 
-
-const recupDonnees = () => {
-	return new Promise((resolve) => {
-		setTimeout(() => {
-			resolve();
-		}, 2000);
-	}).then(() => {
-		return tasks;
-	});
-};
-recupDonnees();
-
 const affiche = (tableau) => {
+	const table = document.getElementById("tasktable");
+	table.innerHTML = "";
+
 	tableau.forEach((element) => {
 		const nom = element.name;
 		const ligne = document.createElement("tr");
 		const celluleNom = document.createElement("td");
 		const celluleOk = document.createElement("td");
-		const celluleSupr = document.createElement("td");
+		const celluleSuppr = document.createElement("td");
 
 		celluleNom.textContent = nom;
 
@@ -32,16 +24,16 @@ const affiche = (tableau) => {
 
 		const boutonSup = document.createElement("button");
 
-		boutonSup.setAttribute("id", `${element.id}`);
+		boutonSup.textContent = "supprimer";
+		celluleSuppr.appendChild(boutonSup);
 
-		boutonSup.textContent = "supprimé";
-		celluleSupr.appendChild(boutonSup);
+    boutonSup.setAttribute("id", `${element.id}`);
 
-		ligne.appendChild(celluleNom, celluleOk, celluleSupr);
+    ligne.appendChild(celluleNom, celluleOk, celluleSuppr);
 		ligne.appendChild(celluleOk);
-		ligne.appendChild(celluleSupr);
+		ligne.appendChild(celluleSuppr);
 
-		document.getElementById("tasktable").appendChild(ligne);
+		table.appendChild(ligne);
 	});
 };
 
@@ -52,10 +44,6 @@ for (let i = 0; i < tasks.length; i++) {
 	});
 }
 
-
-let id = 0;
-let tasks = [];
-
 const addTask = (arr) => {
 	const taskInput = document.querySelector("input");
 	const task = {
@@ -65,10 +53,25 @@ const addTask = (arr) => {
 	};
 	arr.push(task);
 	localStorage.setItem("task-array", JSON.stringify(arr));
+	recupDonnees();
 };
 
 const form = document.querySelector("form");
 form.addEventListener("submit", (e) => {
 	e.preventDefault();
 	addTask(tasks);
+});
+
+const recupDonnees = () => {
+	return new Promise((resolve) => {
+		setTimeout(() => {
+			resolve(JSON.parse(localStorage.getItem("task-array")));
+		}, 1000);
+	}).then((data) => {
+		affiche(data);
+	});
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+	recupDonnees();
 });
