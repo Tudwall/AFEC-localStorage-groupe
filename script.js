@@ -23,6 +23,8 @@ const recupDonnees = () => {
 recupDonnees();
 
 const affiche = (tableau) => {
+	const table = document.getElementById("tasktable");
+	table.innerHTML = "";
 	tableau.forEach((element) => {
 		const nom = element.name;
 		const ligne = document.createElement("tr");
@@ -48,7 +50,7 @@ const affiche = (tableau) => {
 		ligne.appendChild(celluleOk);
 		ligne.appendChild(celluleSupr);
 
-		document.getElementById("tasktable").appendChild(ligne);
+		table.appendChild(ligne);
 	});
 };
 
@@ -64,10 +66,20 @@ const addTask = (arr) => {
 	};
 	arr.push(task);
 	localStorage.setItem("task-array", JSON.stringify(arr));
+	getTasks();
 };
 
 const form = document.querySelector("form");
 form.addEventListener("submit", (e) => {
 	e.preventDefault();
 	addTask(tasks);
+});
+
+const getTasks = () => {
+	const tasks = JSON.parse(localStorage.getItem("task-array"));
+	affiche(tasks);
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+	getTasks();
 });
