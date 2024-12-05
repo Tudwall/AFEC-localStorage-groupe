@@ -1,83 +1,62 @@
 let tasks = [
-  {
-    id: 1,
-    name: "lessive",
-    completed: false,
-  },
-  {
-    id: 2,
-    name: "vaiselle",
-    completed: true,
-  },
+	{
+		id: 1,
+		name: "lessive",
+		completed: false,
+	},
+	{
+		id: 2,
+		name: "vaiselle",
+		completed: true,
+	},
 ];
 
 const recupDonnees = () => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, 2000);
-  }).then(() => {
-    return tasks;
-  });
+	return new Promise((resolve) => {
+		setTimeout(() => {
+			resolve();
+		}, 2000);
+	}).then(() => {
+		return tasks;
+	});
 };
 recupDonnees();
 
 const affiche = (tableau) => {
-  tableau.forEach((element) => {
-    const nom = element.name;
-    const ligne = document.createElement("tr");
-    const celluleNom = document.createElement("td");
-    const celluleOk = document.createElement("td");
-    const celluleSupr = document.createElement("td");
+	tableau.forEach((element) => {
+		const nom = element.name;
+		const ligne = document.createElement("tr");
+		const celluleNom = document.createElement("td");
+		const celluleOk = document.createElement("td");
+		const celluleSupr = document.createElement("td");
 
-    celluleNom.textContent = nom;
+		celluleNom.textContent = nom;
 
-    const boutonOk = document.createElement("button");
-    if (element.completed) {
-      boutonOk.textContent = "terminé";
-    } else {
-      boutonOk.textContent = "pas fait";
-    }
-    celluleOk.appendChild(boutonOk);
+		const boutonOk = document.createElement("button");
+		if (element.completed) {
+			boutonOk.textContent = "terminé";
+		} else {
+			boutonOk.textContent = "pas fait";
+		}
+		celluleOk.appendChild(boutonOk);
 
-    const boutonSup = document.createElement("button");
-    boutonSup.setAttribute('id',`btn${element.id}`);
-    boutonSup.textContent = "supprimé";
-    celluleSupr.appendChild(boutonSup);
+		const boutonSup = document.createElement("button");
+		boutonSup.setAttribute("id", `${element.id}`);
+		boutonSup.textContent = "supprimé";
+		celluleSupr.appendChild(boutonSup);
 
-    ligne.appendChild(celluleNom, celluleOk, celluleSupr);
-    ligne.appendChild(celluleOk);
-    ligne.appendChild(celluleSupr);
+		ligne.appendChild(celluleNom, celluleOk, celluleSupr);
+		ligne.appendChild(celluleOk);
+		ligne.appendChild(celluleSupr);
 
-    document.getElementById("tasktable").appendChild(ligne);
-  });
+		document.getElementById("tasktable").appendChild(ligne);
+	});
 };
 affiche(tasks);
 
-
-const supprimTask= (ligne)=>{
-
-
-	
-            if (confirm("Etes-vous sûr de vouloir supprimer cette tâche ?")){
-              
-
-tasks.splice(ligne,1)
-
-updateaffiche(tasks)
-
-
+for (let i = 0; i < tasks.length; i++) {
+	let bouton = document.getElementById(`${i + 1}`);
+	bouton.addEventListener("click", () => {
+		document.getElementById("tasktable").deleteRow(`${i - 1}`);
+	});
 }
-			}
-
-			const supprimeligne=document.removeChild()
-
-
-
-  }
-	
-
-})
-
-
-
