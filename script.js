@@ -41,6 +41,7 @@ const affiche = (tableau) => {
     celluleOk.appendChild(boutonOk);
 
     const boutonSup = document.createElement("button");
+    boutonSup.setAttribute('id',`btn${element.id}`);
     boutonSup.textContent = "supprimé";
     celluleSupr.appendChild(boutonSup);
 
@@ -59,9 +60,13 @@ const supprimTask= (ligne)=>{
 
 	
             if (confirm("Etes-vous sûr de vouloir supprimer cette tâche ?")){
+              
 
-// function delete_row(e) {
-//     e.parentElement.remove();
+tasks.splice(ligne,1)
+
+updateaffiche(tasks)
+
+
 }
 			}
 
