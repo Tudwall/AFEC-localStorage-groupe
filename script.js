@@ -1,30 +1,10 @@
-/* let tasks = [
-	{
-		id: 1,
-		name: "lessive",
-		completed: false,
-	},
-	{
-		id: 2,
-		name: "vaiselle",
-		completed: true,
-	},
-]; */
-
-const recupDonnees = () => {
-	return new Promise((resolve) => {
-		setTimeout(() => {
-			resolve();
-		}, 2000);
-	}).then(() => {
-		return tasks;
-	});
-};
-recupDonnees();
+let id = 0;
+let tasks = [];
 
 const affiche = (tableau) => {
 	const table = document.getElementById("tasktable");
 	table.innerHTML = "";
+
 	tableau.forEach((element) => {
 		const nom = element.name;
 		const ligne = document.createElement("tr");
@@ -54,9 +34,6 @@ const affiche = (tableau) => {
 	});
 };
 
-let id = 0;
-let tasks = [];
-
 const addTask = (arr) => {
 	const taskInput = document.querySelector("input");
 	const task = {
@@ -66,7 +43,7 @@ const addTask = (arr) => {
 	};
 	arr.push(task);
 	localStorage.setItem("task-array", JSON.stringify(arr));
-	getTasks();
+	recupDonnees();
 };
 
 const form = document.querySelector("form");
@@ -75,11 +52,16 @@ form.addEventListener("submit", (e) => {
 	addTask(tasks);
 });
 
-const getTasks = () => {
-	const tasks = JSON.parse(localStorage.getItem("task-array"));
-	affiche(tasks);
+const recupDonnees = () => {
+	return new Promise((resolve) => {
+		setTimeout(() => {
+			resolve(JSON.parse(localStorage.getItem("task-array")));
+		}, 1000);
+	}).then((data) => {
+		affiche(data);
+	});
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-	getTasks();
+	recupDonnees();
 });
