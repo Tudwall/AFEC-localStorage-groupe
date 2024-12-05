@@ -10,7 +10,7 @@ const affiche = (tableau) => {
 		const ligne = document.createElement("tr");
 		const celluleNom = document.createElement("td");
 		const celluleOk = document.createElement("td");
-		const celluleSupr = document.createElement("td");
+		const celluleSuppr = document.createElement("td");
 
 		celluleNom.textContent = nom;
 
@@ -23,12 +23,12 @@ const affiche = (tableau) => {
 		celluleOk.appendChild(boutonOk);
 
 		const boutonSup = document.createElement("button");
-		boutonSup.textContent = "supprimé";
-		celluleSupr.appendChild(boutonSup);
+		boutonSup.textContent = "supprimer";
+		celluleSuppr.appendChild(boutonSup);
 
-		ligne.appendChild(celluleNom, celluleOk, celluleSupr);
+		ligne.appendChild(celluleNom, celluleOk, celluleSuppr);
 		ligne.appendChild(celluleOk);
-		ligne.appendChild(celluleSupr);
+		ligne.appendChild(celluleSuppr);
 
 		table.appendChild(ligne);
 	});
