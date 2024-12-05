@@ -1,9 +1,12 @@
-let id = 0;
 let tasks = [];
 
 const affiche = (tableau) => {
 	const table = document.getElementById("tasktable");
 	table.innerHTML = "";
+
+	const supprimer = (index) => {
+		tasks.splice(index, 1);
+	};
 
 	tableau.forEach((element) => {
 		const nom = element.name;
@@ -24,6 +27,10 @@ const affiche = (tableau) => {
 
 		const boutonSup = document.createElement("button");
 
+		boutonSup.addEventListener("click", () => {
+			supprimer(element.id);
+		});
+
 		boutonSup.textContent = "supprimer";
 		celluleSuppr.appendChild(boutonSup);
 
@@ -37,12 +44,9 @@ const affiche = (tableau) => {
 	});
 };
 
-for (let i = 0; i < tasks.length; i++) {
+/* for (let i = 0; i < tasks.length; i++) {
 	let bouton = document.getElementById(`${i + 1}`);
-	bouton.addEventListener("click", () => {
-		document.getElementById("tasktable").deleteRow(`${i - 1}`);
-	});
-}
+} */
 
 const addTask = (arr) => {
 	const taskInput = document.querySelector("input");
