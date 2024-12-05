@@ -1,6 +1,17 @@
 let id = 0;
 let tasks = [];
 
+const recupDonnees = () => {
+	return new Promise((resolve) => {
+		setTimeout(() => {
+			resolve();
+		}, 2000);
+	}).then(() => {
+		return tasks;
+	});
+};
+recupDonnees();
+
 const affiche = (tableau) => {
 	const table = document.getElementById("tasktable");
 	table.innerHTML = "";
