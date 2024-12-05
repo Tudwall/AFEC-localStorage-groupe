@@ -23,16 +23,26 @@ const affiche = (tableau) => {
 		celluleOk.appendChild(boutonOk);
 
 		const boutonSup = document.createElement("button");
+
 		boutonSup.textContent = "supprimer";
 		celluleSuppr.appendChild(boutonSup);
 
-		ligne.appendChild(celluleNom, celluleOk, celluleSuppr);
+    boutonSup.setAttribute("id", `${element.id}`);
+
+    ligne.appendChild(celluleNom, celluleOk, celluleSuppr);
 		ligne.appendChild(celluleOk);
 		ligne.appendChild(celluleSuppr);
 
 		table.appendChild(ligne);
 	});
 };
+
+for (let i = 0; i < tasks.length; i++) {
+	let bouton = document.getElementById(`${i + 1}`);
+	bouton.addEventListener("click", () => {
+		document.getElementById("tasktable").deleteRow(`${i - 1}`);
+	});
+}
 
 const addTask = (arr) => {
 	const taskInput = document.querySelector("input");
