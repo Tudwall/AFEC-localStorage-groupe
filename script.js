@@ -1,4 +1,4 @@
-let tasks = [
+/* let tasks = [
 	{
 		id: 1,
 		name: "lessive",
@@ -9,7 +9,7 @@ let tasks = [
 		name: "vaiselle",
 		completed: true,
 	},
-];
+]; */
 
 const recupDonnees = () => {
 	return new Promise((resolve) => {
@@ -41,7 +41,6 @@ const affiche = (tableau) => {
 		celluleOk.appendChild(boutonOk);
 
 		const boutonSup = document.createElement("button");
-		boutonSup.setAttribute("id", `${element.id}`);
 		boutonSup.textContent = "supprimé";
 		celluleSupr.appendChild(boutonSup);
 
@@ -52,11 +51,30 @@ const affiche = (tableau) => {
 		document.getElementById("tasktable").appendChild(ligne);
 	});
 };
-affiche(tasks);
+
+let id = 0;
+let tasks = [];
+
+const addTask = (arr) => {
+	const taskInput = document.querySelector("input");
+	const task = {
+		id: `${id++}`,
+		name: `${taskInput.value}`,
+		completed: false,
+	};
+	arr.push(task);
+	localStorage.setItem("task-array", JSON.stringify(arr));
+};
+
+const form = document.querySelector("form");
+form.addEventListener("submit", (e) => {
+	e.preventDefault();
+	addTask(tasks);
+});
 
 for (let i = 0; i < tasks.length; i++) {
 	let bouton = document.getElementById(`${i + 1}`);
 	bouton.addEventListener("click", () => {
-		document.getElementById("tasktable").deleteRow(`${i - 1}`);
+		document.getElementById("tasktable").insertRow(`${i + 1}`);
 	});
 }
